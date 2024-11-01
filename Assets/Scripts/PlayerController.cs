@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
     public float Speed = 1;
     private Vector3 look = Vector3.down; // 기본 방향을 아래로 설정
     public GameObject scorePrefab;
+    public GameObject Arrow;
 
     float vx = 0;
     float vy = 0;
@@ -14,15 +15,20 @@ public class PlayerController : MonoBehaviour
     float itemShootCoolTime = 1f;
     float lastShotTime = 0;
 
+    private void Awake()
+    {
+        if (Arrow != null)
+        {
+            Arrow.SetActive(false);
+        }
+    }
+
     void Start()
     {
 
 
     }
 
-
-
-    // Update is called once per frame
     void Update()
     {
         float horizontal = Input.GetAxisRaw("Horizontal");
@@ -35,7 +41,7 @@ public class PlayerController : MonoBehaviour
         // 플레이어가 이동 방향을 변경하면 look을 업데이트
         if (horizontal != 0 || vertical != 0)
         {
-            look = new Vector2(horizontal, vertical);
+            look = new Vector3(horizontal, vertical);
         }
 
 
@@ -48,15 +54,31 @@ public class PlayerController : MonoBehaviour
 
         if (fire > 0 && getItem != null && Time.time >= lastShotTime + itemShootCoolTime)
         {
-            
+
             ItemShot();
             lastShotTime = Time.time;
         }
 
 
-        if( getItem != null)
+        if (getItem != null)
         {
             getItem.transform.localPosition = new Vector3(0.5f, 0, 0);
+
+            Arrow.SetActive(true);
+
+            // 원형 궤도를 따라 이동하는 Arrow 위치 설정
+            float radius = 1.3f;  // 플레이어로부터의 거리(반지름)
+            Arrow.transform.localPosition = look * radius;  // look 방향으로 일정 거리만큼 떨어져 위치 설정
+
+            // 화살표가 항상 플레이어를 기준으로 look 방향을 가리키도록 회전
+            Arrow.transform.rotation = Quaternion.LookRotation(Vector3.forward, look);
+
+        }
+
+        if (getItem == null)
+        {
+            Arrow.SetActive(false);
+
         }
 
         //GetComponent<Rigidbody2D>().linearVelocity += new Vector2(vx, vy) * Time.deltaTime;
@@ -132,7 +154,7 @@ public class PlayerController : MonoBehaviour
             itemRb.AddForce(look * itemShotSpeed, ForceMode2D.Impulse);
         }
 
- 
+
         getItem = null;
     }
 

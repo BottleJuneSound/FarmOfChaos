@@ -8,89 +8,119 @@ public class EnemyController : MonoBehaviour
     public Vector3 resetPosition;
 
     public float speed = 2;
-    public Collider2D rangeCollider;
+    //public Collider2D rangeCollider;    // ì´ê±° ì—†ì–´ë„ ëŒì•„ê°€ë„¤? -> ì½œë¦¬ì „2d ì™œ ë˜ëŠ”ì§€ ì•Œì•„ë³´ê¸°
     //public TilemapCollider2D waterCollider;
     bool moveResetZone;
-
+    float vx;
 
 
     void Start()
     {
 
         currentPosition = transform.position;
-        finishPosition = new Vector3(Random.Range(0f, 1f), Random.Range(2f, 5.2f));
+
+        // í¬ì§€ì…˜ ìŠ¤íƒ€íŠ¸ì—ì„œ íŠ¹ì •ê°’ìœ¼ë¡œ ê³ ì •ë˜ê³  ìˆìŒ 5 ì´ˆì— í•œë²ˆì”© ë¦¬ì…‹í•´ì£¼ì
+        finishPosition = new Vector3(Random.Range(-1.5f, 1.5f), Random.Range(3.5f, 5.8f));
         resetPosition = new Vector2(Random.Range(-1, 1.9f), Random.Range(-10, -11));
+
+       vx = transform.position.x;
+
+        InvokeRepeating("SetRandomPosition", 5f, 3f);
+    }
+
+    public void SetRandomPosition()
+    {
+        finishPosition = new Vector3(Random.Range(-1.5f, 1.5f), Random.Range(3.5f, 5.8f));
+        resetPosition = new Vector2(Random.Range(-1, 1.9f), Random.Range(-10, -11));
+        //Debug.Log(finishPosition);
+        //Debug.Log(resetPosition);
     }
 
     void Update()
     {
         currentPosition = transform.position;
+        vx = transform.localPosition.x;
 
-        //¸ñÀûÁö·Î ÀÌµ¿
+        if (vx > 0)
+        {
+            GetComponent<SpriteRenderer>().flipX = true;
+            Debug.Log("í”Œë¦½!");
+        }
+        if(vx < 0)
+        {
+            GetComponent<SpriteRenderer>().flipX = false;
+            Debug.Log("ì‘ë™ì•ˆë˜ëŠ” í”Œë¦½!");
+        }
+
+        //ëª©ì ì§€ë¡œ ì´ë™
         if (currentPosition != finishPosition)
         {
-            if (moveResetZone == false) //ÁßÃ¸ if¸¦ È°¿ëÇÏ¿© ¸®¼ÂÁ¸ ÀÌµ¿ÁßÀÌ¶ó¸é ÀÛµ¿ÇÏÁö ¾ÊÀ½
+            if (moveResetZone == false) //ì¤‘ì²© ifë¥¼ í™œìš©í•˜ì—¬ ë¦¬ì…‹ì¡´ ì´ë™ì¤‘ì´ë¼ë©´ ì‘ë™í•˜ì§€ ì•ŠìŒ
             {
                 GoFinishZone();
             }
         }
 
-        //object ÅÂ±× Ãæµ¹ÀÌ ÃæÁ·ÇÏ¸é ½ÃÀÛ
+        //object íƒœê·¸ ì¶©ëŒì´ ì¶©ì¡±í•˜ë©´ ì‹œì‘
         if (moveResetZone == true)
         {
             float resetSpeed = 2;
-            Debug.Log("¸®¼ÂÆ÷ÀÎÆ®·Î ÀÌµ¿!");
+            //Debug.Log("ë¦¬ì…‹í¬ì¸íŠ¸ë¡œ ì´ë™!");
 
             transform.position = Vector3.MoveTowards
                 (transform.position, resetPosition, resetSpeed * Time.deltaTime);
         }
 
-        //¸®¼ÂÆ÷ÀÎÆ®¿¡ µµÂøÇÏ¸é Á¤Áö
+        //ë¦¬ì…‹í¬ì¸íŠ¸ì— ë„ì°©í•˜ë©´ ì •ì§€
         if (resetPosition == currentPosition)
         {
             moveResetZone = false;
-            Debug.Log("¸®¼ÂÆ÷ÀÎÆ®¿¡ µµÂøÇß½À´Ï´Ù.");
+            //Debug.Log("ë¦¬ì…‹í¬ì¸íŠ¸ì— ë„ì°©í–ˆìŠµë‹ˆë‹¤.");
         }
     }
 
-    public void GoFinishZone()  //¸ñÀûÁö·Î ÀÌµ¿ÇÏ´Â ¸Ş¼­µå
+    public void GoFinishZone()  //ëª©ì ì§€ë¡œ ì´ë™í•˜ëŠ” ë©”ì„œë“œ
     {
         speed = 2f;
         transform.position = Vector3.MoveTowards
             (transform.position, finishPosition, speed * Time.deltaTime);
-        Debug.Log("¸ñÀûÁö·Î ÀÌµ¿Áß!");
+        //Debug.Log("ëª©ì ì§€ë¡œ ì´ë™ì¤‘!");
 
     }
 
-    public void StopMove()  //Á¤Áö¸¦ °ü¸®ÇÏ´Â ¸Ş¼­µå
+    public void StopMove()  //ì •ì§€ë¥¼ ê´€ë¦¬í•˜ëŠ” ë©”ì„œë“œ
     {
         speed = 0;
-        Debug.Log("Ãæµ¹");
+        Debug.Log("ì¶©ëŒ");
 
     }
 
     public void MadEnemy()
     {
-        //Äİ¶óÀÌ´õ°¡ ½ºÄÚ¾î ¿ÀºêÁ§Æ® Ã£À¸¸é µéÀÌ ¹Ş¾Æ¼­ ÆÄ±«ÇÏÀÚ!
+        //ì½œë¼ì´ë”ê°€ ìŠ¤ì½”ì–´ ì˜¤ë¸Œì íŠ¸ ì°¾ìœ¼ë©´ ë“¤ì´ ë°›ì•„ì„œ íŒŒê´´í•˜ì!
         speed = 3;
-        transform.Translate(finishPosition * speed * Time.deltaTime);
+        //transform.position = Vector3.MoveTowards(finishPosition, currentPosition * speed * Time.deltaTime);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)  //Äİ¶óÀÌ´õ Ãæµ¹°ü¸®
+    private void OnCollisionEnter2D(Collision2D collision)  // ì˜¤ë¸Œì íŠ¸ ìì²´ì˜ ì¶©ëŒê´€ë¦¬. ë†ì¥ íŒŒê´´
     {
         currentPosition = transform.position;
-
-        if (collision.gameObject.tag == "Object")
-        {
-            StopMove();
-            moveResetZone = true;
-        }
 
         if(collision.gameObject.tag == "ScoreObject")
         {
             MadEnemy();
         }
 
+    }
 
+    private void OnTriggerEnter2D(Collider2D collider)  //isTriggerì˜ ì¶©ëŒê´€ë¦¬
+    {
+        currentPosition = transform.position;
+
+        if (collider.gameObject.tag == "Object")
+        {
+            StopMove();
+            moveResetZone = true;
+        }
     }
 }
