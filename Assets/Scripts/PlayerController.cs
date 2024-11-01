@@ -145,6 +145,7 @@ public class PlayerController : MonoBehaviour
 
     void ItemShot()
     {
+        getItem.tag = "Bullet";
         getItem.transform.SetParent(null);
 
         Rigidbody2D itemRb = getItem.GetComponent<Rigidbody2D>();

@@ -80,6 +80,8 @@ public class EnemyController : MonoBehaviour
 
     }
 
+
+
     public void Hit()
     {
 
@@ -136,6 +138,14 @@ public class EnemyController : MonoBehaviour
         {
             StopMove();
             moveResetZone = true;
+        }
+
+        if (collider.gameObject.tag == "Bullet")
+        {
+            Debug.Log("아이템이 적에게 맞았다.");
+            DestroyThis();
+
+            collider.GetComponent<Item>().DestroyItem();
         }
     }
 }

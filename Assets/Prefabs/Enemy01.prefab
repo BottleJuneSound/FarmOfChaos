@@ -194,7 +194,6 @@ MonoBehaviour:
   finishPosition: {x: 0, y: 0, z: 0}
   resetPosition: {x: 0, y: 0, z: 0}
   speed: 2
-  rangeCollider: {fileID: 3179372326440649745}
 --- !u!1 &6688330492382546370
 GameObject:
   m_ObjectHideFlags: 0
