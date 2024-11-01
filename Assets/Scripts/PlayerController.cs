@@ -105,7 +105,7 @@ public class PlayerController : MonoBehaviour
         //    Debug.Log("충돌");
         //}
 
-        if (triggerEnter.gameObject.tag == "Item" || triggerEnter.gameObject.tag == "Weapon" && getItem == null)
+        if ((triggerEnter.gameObject.tag == "Item" || triggerEnter.gameObject.tag == "Weapon") && getItem == null)
         {
             Debug.Log("아이템을 습득했다!");
 

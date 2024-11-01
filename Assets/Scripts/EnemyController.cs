@@ -44,12 +44,12 @@ public class EnemyController : MonoBehaviour
         if (vx > 0)
         {
             GetComponent<SpriteRenderer>().flipX = true;
-            Debug.Log("플립!");
+            //Debug.Log("플립!");
         }
         if(vx < 0)
         {
             GetComponent<SpriteRenderer>().flipX = false;
-            Debug.Log("작동안되는 플립!");
+            //Debug.Log("작동안되는 플립!");
         }
 
         //목적지로 이동
@@ -77,6 +77,21 @@ public class EnemyController : MonoBehaviour
             moveResetZone = false;
             //Debug.Log("리셋포인트에 도착했습니다.");
         }
+
+    }
+
+    public void Hit()
+    {
+
+        //Destroy(gameObject);
+        speed = 0;
+        // 안멈추넹.... 여튼 이자리에 죽는 애니메이션 or효과 넣으셈!
+        Invoke("DestroyThis", 3f);
+    }
+
+    public void DestroyThis()
+    {
+        Destroy(gameObject);
     }
 
     public void GoFinishZone()  //목적지로 이동하는 메서드
