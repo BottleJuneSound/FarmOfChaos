@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class PlayerController : MonoBehaviour
 {
@@ -8,6 +9,11 @@ public class PlayerController : MonoBehaviour
     private Vector3 look = Vector3.down; // 기본 방향을 아래로 설정
     public GameObject scorePrefab;
     public GameObject Arrow;
+
+    
+    public AudioResource [] audioResource;
+    public AudioSource audioSource0;
+    public AudioSource audioSource1;
 
     float vx = 0;
     float vy = 0;
@@ -153,10 +159,27 @@ public class PlayerController : MonoBehaviour
         {
             itemRb.linearVelocity = Vector2.zero;
             itemRb.AddForce(look * itemShotSpeed, ForceMode2D.Impulse);
+            
         }
+        ThrowSFX();
+
 
 
         getItem = null;
     }
+    public void FootstepSFX()
+    {
+        audioSource0.resource = audioResource[0];
 
+        audioSource0.Play();
+
+    }
+
+    public void ThrowSFX()
+    {
+        audioSource1.resource = audioResource[1];
+
+        audioSource1.Play();
+
+    }
 }

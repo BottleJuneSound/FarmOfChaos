@@ -148,4 +148,6 @@ public class EnemyController : MonoBehaviour
             collider.GetComponent<Item>().DestroyItem();
         }
     }
+
+
 }

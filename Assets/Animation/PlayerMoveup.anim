@@ -28,8 +28,6 @@ AnimationClip:
       value: {fileID: 1494002176974529289, guid: bcec4818ea44063438ce5bc020848f8c, type: 3}
     - time: 0.25
       value: {fileID: 5902472224145541201, guid: bcec4818ea44063438ce5bc020848f8c, type: 3}
-    - time: 0.33333334
-      value: {fileID: -5312978444038240032, guid: bcec4818ea44063438ce5bc020848f8c, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -56,13 +54,12 @@ AnimationClip:
     - {fileID: 5704146936193991084, guid: bcec4818ea44063438ce5bc020848f8c, type: 3}
     - {fileID: 1494002176974529289, guid: bcec4818ea44063438ce5bc020848f8c, type: 3}
     - {fileID: 5902472224145541201, guid: bcec4818ea44063438ce5bc020848f8c, type: 3}
-    - {fileID: -5312978444038240032, guid: bcec4818ea44063438ce5bc020848f8c, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.35000002
+    m_StopTime: 0.26666668
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -81,4 +78,11 @@ AnimationClip:
   m_EulerEditorCurves: []
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
-  m_Events: []
+  m_Events:
+  - time: 0.083333336
+    functionName: FootstepSFX
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
