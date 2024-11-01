@@ -3427,7 +3427,7 @@ MonoBehaviour:
   - {fileID: 3392279168300102431, guid: 8ef48e3138e149944b0c499e4147273e, type: 3}
   spawnTerm: 5
   insideSpawnTerm: 8
-  enemySpawnTerm: 3
+  enemySpawnTerm: 60
 --- !u!4 &959349555
 Transform:
   m_ObjectHideFlags: 0
