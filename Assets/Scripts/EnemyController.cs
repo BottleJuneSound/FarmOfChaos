@@ -4,7 +4,7 @@ using UnityEngine.Tilemaps;
 public class EnemyController : MonoBehaviour
 {
     public Vector3 currentPosition;
-    public Vector3 finishPosition = new Vector3(0, 0, 0);
+    public Vector3 finishPosition;
     public Vector3 resetPosition;
 
     public float speed = 2;
@@ -18,6 +18,7 @@ public class EnemyController : MonoBehaviour
     {
 
         currentPosition = transform.position;
+        finishPosition = new Vector3(Random.Range(0f, 1f), Random.Range(2f, 5.2f));
         resetPosition = new Vector2(Random.Range(-1, 1.9f), Random.Range(-10, -11));
     }
 
@@ -68,6 +69,13 @@ public class EnemyController : MonoBehaviour
 
     }
 
+    public void MadEnemy()
+    {
+        //콜라이더가 스코어 오브젝트 찾으면 들이 받아서 파괴하자!
+        speed = 3;
+        transform.Translate(finishPosition * speed * Time.deltaTime);
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)  //콜라이더 충돌관리
     {
         currentPosition = transform.position;
@@ -76,7 +84,11 @@ public class EnemyController : MonoBehaviour
         {
             StopMove();
             moveResetZone = true;
+        }
 
+        if(collision.gameObject.tag == "ScoreObject")
+        {
+            MadEnemy();
         }
 
 
