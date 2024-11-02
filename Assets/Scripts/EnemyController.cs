@@ -8,7 +8,7 @@ public class EnemyController : MonoBehaviour
     public Vector3 resetPosition;
 
     public float speed = 2;
-    //public Collider2D rangeCollider;    // 이거 없어도 돌아가네? -> 콜리전2d 왜 되는지 알아보기
+    //public Collider2D rangeCollider;    // 이거 없어도 돌아가네? -> 콜리전2d 왜 되는지 알아보기__확인했음! istrigger없이 작동할대는 이거 없어두 돌아감!
     //public TilemapCollider2D waterCollider;
     bool moveResetZone;
     float vx;
@@ -112,21 +112,10 @@ public class EnemyController : MonoBehaviour
 
     }
 
-    public void MadEnemy()
-    {
-        //콜라이더가 스코어 오브젝트 찾으면 들이 받아서 파괴하자!
-        speed = 3;
-        //transform.position = Vector3.MoveTowards(finishPosition, currentPosition * speed * Time.deltaTime);
-    }
 
-    private void OnCollisionEnter2D(Collision2D collision)  // 오브젝트 자체의 충돌관리. 농장 파괴
+    private void OnCollisionEnter2D(Collision2D collision)  // 오브젝트 자체의 충돌관리. 농장 파괴. 사용법 몰라서 트리거 엔터로 반영되었슴...
     {
         currentPosition = transform.position;
-
-        if(collision.gameObject.tag == "ScoreObject")
-        {
-            MadEnemy();
-        }
 
     }
 
@@ -140,13 +129,20 @@ public class EnemyController : MonoBehaviour
             moveResetZone = true;
         }
 
-        if (collider.gameObject.tag == "Bullet")
+        if (collider.gameObject.tag == "Bullet" || collider.gameObject.tag == "ScoreObject")
         {
             Debug.Log("아이템이 적에게 맞았다.");
             DestroyThis();
 
             collider.GetComponent<Item>().DestroyItem();
         }
+
+        //if (collider.gameObject.tag == "ScoreObject")
+        //{
+        //    DestroyThis();
+        //    collider.GetComponent<Item>().DestroyItem();
+        //}
+
     }
 
 
