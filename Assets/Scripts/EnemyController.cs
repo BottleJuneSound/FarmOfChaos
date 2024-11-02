@@ -93,7 +93,7 @@ public class EnemyController : MonoBehaviour
 
     public void DestroyThis()
     {
-        Destroy(gameObject);
+        Destroy(gameObject, 0.3f);
     }
 
     public void GoFinishZone()  //목적지로 이동하는 메서드
@@ -132,6 +132,8 @@ public class EnemyController : MonoBehaviour
         if (collider.gameObject.tag == "Bullet" || collider.gameObject.tag == "ScoreObject")
         {
             Debug.Log("아이템이 적에게 맞았다.");
+            speed = 0;
+            GetComponent<Animator>().SetTrigger("DeathTrigger");
             DestroyThis();
 
             collider.GetComponent<Item>().DestroyItem();

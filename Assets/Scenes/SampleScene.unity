@@ -3426,7 +3426,7 @@ MonoBehaviour:
   m_Intensity: 1
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
-  m_ApplyToSortingLayers: 00000000cd875b6ca9672d840bbedcd0f9c800c55d75e6d6b54e64675b1587cd83bf7394
+  m_ApplyToSortingLayers: 00000000cd875b6ca9672d840bbedcd0f9c800c55d75e6d6b54e64675b1587cd83bf7394ebff542c
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -5585,10 +5585,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy02
       objectReference: {fileID: 0}
-    - target: {fileID: 2886655173457387712, guid: 4efd307c751bf264fbe7128d9b00df55, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7473770271076001134, guid: 4efd307c751bf264fbe7128d9b00df55, type: 3}
       propertyPath: m_LocalPosition.x
       value: 6.8
@@ -6737,21 +6733,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3179372326440649745, guid: 8ef48e3138e149944b0c499e4147273e, type: 3}
-      propertyPath: m_Size.x
-      value: 1.4805765
-      objectReference: {fileID: 0}
-    - target: {fileID: 3179372326440649745, guid: 8ef48e3138e149944b0c499e4147273e, type: 3}
-      propertyPath: m_Offset.x
-      value: -0.012766838
-      objectReference: {fileID: 0}
     - target: {fileID: 3392279168300102431, guid: 8ef48e3138e149944b0c499e4147273e, type: 3}
       propertyPath: m_Name
       value: Enemy01
-      objectReference: {fileID: 0}
-    - target: {fileID: 6688330492382546370, guid: 8ef48e3138e149944b0c499e4147273e, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6881130758498881363, guid: 8ef48e3138e149944b0c499e4147273e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6793,10 +6777,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7117210594305958087, guid: 8ef48e3138e149944b0c499e4147273e, type: 3}
-      propertyPath: speed
-      value: 2.2
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6816,6 +6796,7 @@ GameObject:
   - component: {fileID: 2128735021}
   - component: {fileID: 2128735025}
   - component: {fileID: 2128735024}
+  - component: {fileID: 2128735026}
   m_Layer: 0
   m_Name: Water
   m_TagString: Object
@@ -24674,6 +24655,28 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!95 &2128735026
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2128735019}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: fa99e50b73c011149af5b64aed3b75a1, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &1971763774543395907
 PrefabInstance:
   m_ObjectHideFlags: 0
