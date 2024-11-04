@@ -131,6 +131,7 @@ public class EnemyController : MonoBehaviour
 
         if (collider.gameObject.tag == "Bullet")
         {
+            SoundManager.Instance.EnemyHitSFX();
             Debug.Log("아이템이 적에게 맞았다.");
             speed = 0;
             GetComponent<Animator>().SetTrigger("DeathTrigger");
@@ -142,6 +143,7 @@ public class EnemyController : MonoBehaviour
 
         if (collider.gameObject.tag == "ScoreObject")
         {
+            SoundManager.Instance.FarmDestroySFX();
             //Debug.Log("스코어 아이템 펑!");
             speed = 0;
             GetComponent<Animator>().SetTrigger("DeathTrigger");

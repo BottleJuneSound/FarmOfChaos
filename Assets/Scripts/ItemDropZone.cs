@@ -22,7 +22,7 @@ public class ItemDropZone : MonoBehaviour
 
             if (ItemArray[i] == null)
             {
-                ItemArray[i] = null;
+                //ItemArray[i] = null;
                 //Debug.Log(i + "");
             }
             else if (ItemArray[i] != null)
