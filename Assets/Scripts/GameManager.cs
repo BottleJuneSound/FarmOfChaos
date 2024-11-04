@@ -1,10 +1,16 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
     public List<GameObject> SpawnPrefab;
     public List<GameObject> EnemyPrefab;
+    public GameObject GameOverCanvas;
+    public TMP_Text TimeLimitLabel;
+    public float TimeLimit = 60;
+
+    public GameObject CinemachineInstance;
 
 
     //public GameObject foodPrefab;
@@ -20,6 +26,17 @@ public class GameManager : MonoBehaviour
     float spawnTimer;
     float enemySpawnTimer;
     float insideSpawnTimer;
+
+    private static GameManager instance;
+    public static GameManager Instance
+    {
+        get { return instance; }
+    }
+
+    public void Awake()
+    {
+        instance = this;
+    }
 
     void Start()
     {
@@ -38,6 +55,16 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
+        TimeLimit -= Time.deltaTime;
+        TimeLimitLabel.text = "Time: " + ((int)TimeLimit);
+
+        if(TimeLimit <0 )
+        {
+            GameOver();
+        }
+
+
+
         spawnTimer += Time.deltaTime;
         insideSpawnTimer += Time.deltaTime;
         enemySpawnTimer += Time.deltaTime;
@@ -72,6 +99,19 @@ public class GameManager : MonoBehaviour
             GameObject spawnObj = Instantiate(EnemyPrefab[randomListIndex]);
             spawnObj.transform.position = new Vector2(Random.Range(-8, 6.8f), Random.Range(-9, -12));
         }
+
+    }
+
+    public void GameOver()
+    {
+        CinemachineInstance.SetActive(false);
+        GameOverCanvas.SetActive(true);
+    }
+
+    public void GameClear()
+    {
+        CinemachineInstance.SetActive(false);
+        GameOverCanvas.SetActive(true);
 
     }
 }

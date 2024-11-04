@@ -1,14 +1,49 @@
+using System;
 using UnityEngine;
 
 public class ItemDropZone : MonoBehaviour
 {
     public GameObject ItemPrefab; // 생성할 아이템 프리팹
     public Vector3[] spawnPositions;
-    int nextSpawnIndex = 0;
+    public GameObject[] ItemArray;
+    public int nextInex = 0;
 
+
+    public void Start()
+    {
+        ItemArray = new GameObject[6];
+
+    }
+
+    private void Update()
+    {
+        for (int i = 0; i < spawnPositions.Length; i++)
+        {
+
+            if (ItemArray[i] == null)
+            {
+                ItemArray[i] = null;
+                //Debug.Log(i + "");
+            }
+            else if (ItemArray[i] != null)
+            {
+                Debug.Log(i+"에 놓을 공간이 없습니다.");
+                //GetComponent<GameManager>().GameClear();
+            }
+
+        }
+
+        //foreach(int scoreItem in ItemArray)
+        //{
+        //    Debug.Log("더 이상 놓을 공간이 없습니다.");
+        //    //GetComponent<GameManager>().GameClear();
+        //}
+
+    }
     // 아이템 생성 메소드
     public void SpawnItem()
     {
+        //ItemArray = new GameObject[6];
         spawnPositions = new Vector3[]
         {
             new Vector3(1f,5.2f),
@@ -17,30 +52,32 @@ public class ItemDropZone : MonoBehaviour
             new Vector3(1f,4.2f),
             new Vector3(0,4.2f),
             new Vector3(-1f,4.2f),
-
-
         };
 
-        // 드랍 존의 콜라이더 크기를 얻기
-        //CompositeCollider2D collider = GetComponent<CompositeCollider2D>();
-        //if (collider != null)
 
-        if (nextSpawnIndex < spawnPositions.Length)
+        if (ItemArray[nextInex] == null)
         {
-            Vector3 spawnPosition = spawnPositions[nextSpawnIndex];
-            //    Random.Range(collider.bounds.min.x, collider.bounds.max.x),
-            //    Random.Range(collider.bounds.min.y, collider.bounds.max.y)
-            //
+            Debug.Log(nextInex);
+            Vector3 spawnPosition = spawnPositions[nextInex];
+            ItemArray[nextInex] = Instantiate(ItemPrefab, spawnPosition, Quaternion.identity);
+            nextInex++;
 
-            Instantiate(ItemPrefab, spawnPosition, Quaternion.identity);
+            if (nextInex >= 6)
+            {
 
-            nextSpawnIndex++;
-            //아래 중첩 if사용하여 오브젝트 파괴되면 인덱스-- 넣어야할듯!
-        }
-        else
-        {
-            Debug.Log("더 이상 놓을 공간이 없습니다.");
-            //클리어 화면으로 이동하는 코드 구현
+                for (int i = 0; i < spawnPositions.Length; i++)
+                {
+
+                    if (ItemArray[i] == null)
+                    {
+                        nextInex = i;
+                        break;
+                    }
+
+                }
+
+            }
+
         }
 
     }

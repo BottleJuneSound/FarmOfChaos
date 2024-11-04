@@ -124,8 +124,8 @@ public class PlayerController : MonoBehaviour
 
         }
 
-        // 아이템을 들고 있는지 확인
-        if (triggerEnter.gameObject.tag == "ItemDropZone" && getItem.gameObject.tag == "Item" && getItem != null)
+        // 아이템을 들고 있는지 확인, 아래 if조건 에러남 null레퍼런스
+        if ((triggerEnter.gameObject.tag == "ItemDropZone" && getItem.gameObject.tag == "Item") && getItem != null)
         {
             Debug.Log("아이템을 드랍존에 가지고 들어옴!");
 

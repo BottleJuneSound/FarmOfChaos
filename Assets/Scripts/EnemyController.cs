@@ -129,21 +129,26 @@ public class EnemyController : MonoBehaviour
             moveResetZone = true;
         }
 
-        if (collider.gameObject.tag == "Bullet" || collider.gameObject.tag == "ScoreObject")
+        if (collider.gameObject.tag == "Bullet")
         {
             Debug.Log("아이템이 적에게 맞았다.");
             speed = 0;
             GetComponent<Animator>().SetTrigger("DeathTrigger");
-            DestroyThis();
-
             collider.GetComponent<Item>().DestroyItem();
+            Invoke("DestroyThis", 0.3f);
+            // null에러 나옴 디스트로이 되는 속도에 따라 문제 생기는듯
+            // 아이템먼저 Destroy해서 해결
         }
 
-        //if (collider.gameObject.tag == "ScoreObject")
-        //{
-        //    DestroyThis();
-        //    collider.GetComponent<Item>().DestroyItem();
-        //}
+        if (collider.gameObject.tag == "ScoreObject")
+        {
+            //Debug.Log("스코어 아이템 펑!");
+            speed = 0;
+            GetComponent<Animator>().SetTrigger("DeathTrigger");
+            collider.GetComponent<Item>().DestroyItem();
+
+            Invoke("DestroyThis", 0.3f);
+        }
 
     }
 
