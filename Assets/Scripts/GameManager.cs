@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -8,8 +9,13 @@ public class GameManager : MonoBehaviour
     public List<GameObject> EnemyPrefab;
     public GameObject GameOverCanvas;
     public TMP_Text TimeLimitLabel;
-    public float TimeLimit = 60;
+    public TMP_Text TimeCountDown;
+    public TMP_Text TitlePanel;
 
+
+    public float TimeLimit = 60;
+    public GameObject CountDownCanvas;
+    public GameObject HalfTimeAlarm;
     public GameObject CinemachineInstance;
 
 
@@ -57,10 +63,29 @@ public class GameManager : MonoBehaviour
     {
         TimeLimit -= Time.deltaTime;
         TimeLimitLabel.text = "Time: " + ((int)TimeLimit);
+        TimeCountDown.text = ""+((int)TimeLimit);
 
-        if(TimeLimit <0 )
+        if (TimeLimit < 0)
         {
             GameOver();
+        }
+
+        if(TimeLimit < 10)
+        {
+            CountDownCanvas.SetActive(true);
+            if (TimeLimit < 0)
+            {
+                CountDownCanvas.SetActive(false);
+            }
+        }
+
+        if(TimeLimit < 30)
+        {
+            HalfTimeAlarm.SetActive(true);
+            if(TimeLimit < 28)
+            {
+                HalfTimeAlarm.SetActive(false);
+            }
         }
 
 
@@ -104,14 +129,27 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
+        TitlePanel.text = ("GameOver" + "");
         CinemachineInstance.SetActive(false);
         GameOverCanvas.SetActive(true);
     }
 
     public void GameClear()
     {
+        TitlePanel.text = ("Clear!" + "");
         CinemachineInstance.SetActive(false);
         GameOverCanvas.SetActive(true);
 
     }
+
+    public void AgainPressed()
+    {
+        SceneManager.LoadScene("GameScene");
+    }
+
+    public void QuitPressed()
+    {
+        SceneManager.LoadScene("GameStartScene");
+    }
+
 }

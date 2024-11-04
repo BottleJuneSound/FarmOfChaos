@@ -28,15 +28,23 @@ public class ItemDropZone : MonoBehaviour
             else if (ItemArray[i] != null)
             {
                 Debug.Log(i+"에 놓을 공간이 없습니다.");
-                //GetComponent<GameManager>().GameClear();
             }
 
         }
 
-        //foreach(int scoreItem in ItemArray)
+        //for (int i = 0; i < ItemArray.Length; i++)
         //{
-        //    Debug.Log("더 이상 놓을 공간이 없습니다.");
-        //    //GetComponent<GameManager>().GameClear();
+        //    foreach(GameObject itemArray in ItemArray)
+        //    {
+        //        Debug.Log("더 이상 놓을 공간이 없습니다.");
+        //        if (ItemArray[i] != null)
+        //        {
+                    
+
+        //        }
+        //        GetComponent<GameManager>().GameClear();
+        //    }
+
         //}
 
     }
