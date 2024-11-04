@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     public GameObject CountDownCanvas;
     public GameObject HalfTimeAlarm;
     public GameObject CinemachineInstance;
+    public GameObject StartCanvas;
 
 
     //public GameObject foodPrefab;
@@ -63,14 +64,15 @@ public class GameManager : MonoBehaviour
     {
         TimeLimit -= Time.deltaTime;
         TimeLimitLabel.text = "Time: " + ((int)TimeLimit);
-        TimeCountDown.text = ""+((int)TimeLimit);
+        TimeCountDown.text = "" + ((int)TimeLimit);
+
 
         if (TimeLimit < 0)
         {
             GameOver();
         }
 
-        if(TimeLimit < 10)
+        if (TimeLimit < 10)
         {
             CountDownCanvas.SetActive(true);
             if (TimeLimit < 0)
@@ -79,13 +81,19 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        if(TimeLimit < 30)
+        if (TimeLimit < 30)
         {
             HalfTimeAlarm.SetActive(true);
-            if(TimeLimit < 28)
+            if (TimeLimit < 28)
             {
                 HalfTimeAlarm.SetActive(false);
             }
+        }
+
+
+        if (TimeLimit < 59)
+        {
+            StartCanvas.SetActive(false);
         }
 
 

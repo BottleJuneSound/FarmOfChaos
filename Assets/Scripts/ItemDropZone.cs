@@ -32,20 +32,8 @@ public class ItemDropZone : MonoBehaviour
 
         }
 
-        //for (int i = 0; i < ItemArray.Length; i++)
-        //{
-        //    foreach(GameObject itemArray in ItemArray)
-        //    {
-        //        Debug.Log("더 이상 놓을 공간이 없습니다.");
-        //        if (ItemArray[i] != null)
-        //        {
-                    
+        //GetComponent<GameManager>().GameClear(); ////모든 배열이 찼다면 게임클리어로 이동
 
-        //        }
-        //        GetComponent<GameManager>().GameClear();
-        //    }
-
-        //}
 
     }
     // 아이템 생성 메소드

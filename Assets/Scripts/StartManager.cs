@@ -3,9 +3,22 @@ using UnityEngine.SceneManagement;
 
 public class StartManager : MonoBehaviour
 {
+    public void Update()
+    {
+        if (Input.anyKeyDown)
+        {
+            SceneManager.LoadScene("GameScene");
+
+        }
+    }
+
     public void StartPressed()
     {
-        SceneManager.LoadScene("GameScene");
+        if (Input.anyKeyDown)
+        {
+            SceneManager.LoadScene("GameScene");
+
+        }
     }
 
     public void QuitPressed()

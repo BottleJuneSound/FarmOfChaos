@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class Item : MonoBehaviour
 {
+    public void Update()
+    {
+        if (!GetComponent<SpriteRenderer>().isVisible)
+        {
+            DestroyItem();
+        }
+    }
     public void DestroyItem()
     {
         Destroy(this.gameObject);
