@@ -46,21 +46,31 @@ public class GameManager : MonoBehaviour
     public void Awake()
     {
         instance = this;
+
+        TimeLimit = 60;
+        HalfTimeAlarm.SetActive(false);
+        hasPlayingCountDownSFX = false;
+        hasPlayingClockSFX = false;
+        //SoundManager.Instance.StopSound(3);
+
+
     }
+
 
     void Start()
     {
+        SoundManager.Instance.BGMPlayer();
+
         //List<GameObject> SpawnPrefab = new List<GameObject>();
 
         //SpawnPrefab.Add(foodPrefab);
         //SpawnPrefab.Add(weaponPrefab);
         //SpawnPrefab.Add(enemyPrefab);
 
-
-
         spawnTimer = 0;
         insideSpawnTimer = 0;
         enemySpawnTimer = 0;
+        
     }
 
     void Update()
@@ -82,6 +92,8 @@ public class GameManager : MonoBehaviour
 
             if (TimeLimit < 0)
             {
+                SoundManager.Instance.CountDownSFX();
+                SoundManager.Instance.StopSound(2);
                 CountDownCanvas.SetActive(false);
                 hasPlayingCountDownSFX = false;
                 GameOver();
@@ -102,6 +114,8 @@ public class GameManager : MonoBehaviour
             {
                 HalfTimeAlarm.SetActive(false);
                 hasPlayingClockSFX = false;
+                SoundManager.Instance.StopSound(3);
+
             }
         }
 
@@ -169,12 +183,12 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 1;
         SceneManager.LoadScene("GameScene");
+
     }
 
     public void QuitPressed()
     {
         SceneManager.LoadScene("GameStartScene");
-
     }
 
     //public void ClockSFXPlay()

@@ -136,11 +136,11 @@ public class EnemyController : MonoBehaviour
 
             Debug.Log("아이템이 적에게 맞았다.");
             speed = 0;
+            GetComponent<CircleCollider2D>().isTrigger = true;
             GetComponent<Animator>().SetTrigger("DeathTrigger");
             collider.GetComponent<Item>().DestroyItem();
             Invoke("DestroyThis", 0.3f);
-            // null에러 나옴 디스트로이 되는 속도에 따라 문제 생기는듯
-            // 아이템먼저 Destroy해서 해결
+           
         }
 
         if (collider.gameObject.tag == "ScoreObject")
@@ -150,6 +150,7 @@ public class EnemyController : MonoBehaviour
 
             Debug.Log("스코어 아이템 펑!");
             speed = 0;
+            GetComponent<CircleCollider2D>().isTrigger = true;
             GetComponent<Animator>().SetTrigger("DeathTrigger");
             collider.GetComponent<Item>().DestroyItem();
             Invoke("DestroyThis", 0.3f);

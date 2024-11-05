@@ -114,6 +114,7 @@ public class PlayerController : MonoBehaviour
         if ((triggerEnter.gameObject.tag == "Item" || triggerEnter.gameObject.tag == "Weapon") && getItem == null)
         {
             Debug.Log("아이템을 습득했다!");
+            //SoundManager.Instance.GetItemSFX();
 
             // 아이템을 플레이어의 자식 오브젝트로 설정해 들고 다니게 하기
             getItem = triggerEnter.gameObject;
@@ -130,6 +131,7 @@ public class PlayerController : MonoBehaviour
             Debug.Log("아이템을 드랍존에 가지고 들어옴!");
 
             // 아이템 스폰
+            SoundManager.Instance.ScoreItemSFX();
             triggerEnter.GetComponent<ItemDropZone>().SpawnItem();
 
             // 아이템을 더 이상 들고 있지 않도록 설정

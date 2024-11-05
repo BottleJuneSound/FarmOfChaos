@@ -8,7 +8,9 @@ public class SoundManager : MonoBehaviour
     public AudioResource CountDown;
     public AudioResource Clock;
     public AudioResource Death;
-    //public AudioResource ;
+    public AudioResource ScoreItem;
+    public AudioResource BGM;
+
 
     public AudioSource[] audioSource;
 
@@ -50,5 +52,25 @@ public class SoundManager : MonoBehaviour
     {
         audioSource[4].resource = Death;
         audioSource[4].Play();
+    }
+    public void ScoreItemSFX()
+    {
+        audioSource[5].resource = ScoreItem;
+        audioSource[5].Play();
+    }
+    public void BGMPlayer()
+    {
+        audioSource[6].resource = BGM;
+        audioSource[6].Play();
+    }
+
+    public void StopSound(int index)
+    {
+        if (index >= 0 && index < audioSource.Length)
+        {
+            audioSource[index].Stop();
+            audioSource[index].clip = null;
+        }
+            
     }
 }

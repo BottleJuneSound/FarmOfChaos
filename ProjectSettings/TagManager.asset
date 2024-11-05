@@ -9,6 +9,7 @@ TagManager:
   - Item
   - ScoreObject
   - ItemDropZone
+  - Props
   - Weapon
   - Enemy
   - Bullet
@@ -52,8 +53,8 @@ TagManager:
   - name: Terrain
     uniqueID: 2217568169
     locked: 0
-  - name: Props
-    uniqueID: 3504127499
+  - name: ItemDropZone
+    uniqueID: 3747443779
     locked: 0
   - name: ScoreObject
     uniqueID: 1734626997
@@ -66,6 +67,9 @@ TagManager:
     locked: 0
   - name: Enemy
     uniqueID: 2490613635
+    locked: 0
+  - name: Props
+    uniqueID: 3504127499
     locked: 0
   - name: Object
     uniqueID: 3305163001
