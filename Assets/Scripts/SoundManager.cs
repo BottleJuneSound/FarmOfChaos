@@ -7,6 +7,7 @@ public class SoundManager : MonoBehaviour
     public AudioResource FarmDestroy;
     public AudioResource CountDown;
     public AudioResource Clock;
+    public AudioResource Death;
     //public AudioResource ;
 
     public AudioSource[] audioSource;
@@ -43,5 +44,11 @@ public class SoundManager : MonoBehaviour
     {
         audioSource[3].resource = Clock;
         audioSource[3].Play();
+    }
+
+    public void EnemyDeath()
+    {
+        audioSource[4].resource = Death;
+        audioSource[4].Play();
     }
 }

@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour
     public float spawnTerm = 5;
     public float insideSpawnTerm = 8;
     public float enemySpawnTerm = 3;
+    private bool hasPlayingSFX = false;
 
 
     float spawnTimer;
@@ -67,26 +68,39 @@ public class GameManager : MonoBehaviour
         TimeCountDown.text = "" + ((int)TimeLimit);
 
 
-        if (TimeLimit < 0)
-        {
-            GameOver();
-        }
-
-        if (TimeLimit < 10)
+        if (TimeLimit < 11)
         {
             CountDownCanvas.SetActive(true);
+
+            //if (!hasPlayingSFX)
+            //{
+            //    SoundManager.Instance.CountDownSFX();
+            //    hasPlayingSFX = true;
+
+            //}
+
             if (TimeLimit < 0)
             {
                 CountDownCanvas.SetActive(false);
+                hasPlayingSFX = false;
+                GameOver();
             }
         }
 
         if (TimeLimit < 30)
         {
             HalfTimeAlarm.SetActive(true);
+            //if (!hasPlayingSFX)
+            //{
+            //    SoundManager.Instance.ClockSFX();
+            //    hasPlayingSFX = true;
+
+            //}
+
             if (TimeLimit < 28)
             {
                 HalfTimeAlarm.SetActive(false);
+                hasPlayingSFX = false;
             }
         }
 
@@ -158,6 +172,7 @@ public class GameManager : MonoBehaviour
     public void QuitPressed()
     {
         SceneManager.LoadScene("GameStartScene");
+
     }
 
 }
