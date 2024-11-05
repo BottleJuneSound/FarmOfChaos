@@ -7,15 +7,7 @@ public class StartManager : MonoBehaviour
     {
         if (Input.anyKeyDown)
         {
-            SceneManager.LoadScene("GameScene");
-
-        }
-    }
-
-    public void StartPressed()
-    {
-        if (Input.anyKeyDown)
-        {
+            Time.timeScale = 1;
             SceneManager.LoadScene("GameScene");
 
         }

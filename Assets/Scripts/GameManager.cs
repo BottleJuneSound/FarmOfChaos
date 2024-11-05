@@ -28,7 +28,9 @@ public class GameManager : MonoBehaviour
     public float spawnTerm = 5;
     public float insideSpawnTerm = 8;
     public float enemySpawnTerm = 3;
-    private bool hasPlayingSFX = false;
+    private bool hasPlayingCountDownSFX = false;
+    private bool hasPlayingClockSFX = false;
+
 
 
     float spawnTimer;
@@ -68,21 +70,20 @@ public class GameManager : MonoBehaviour
         TimeCountDown.text = "" + ((int)TimeLimit);
 
 
-        if (TimeLimit < 11)
+        if (TimeLimit < 10)
         {
             CountDownCanvas.SetActive(true);
 
-            //if (!hasPlayingSFX)
-            //{
-            //    SoundManager.Instance.CountDownSFX();
-            //    hasPlayingSFX = true;
-
-            //}
+            if (!hasPlayingCountDownSFX)
+            {
+                SoundManager.Instance.CountDownSFX();
+                hasPlayingCountDownSFX = true;
+            }
 
             if (TimeLimit < 0)
             {
                 CountDownCanvas.SetActive(false);
-                hasPlayingSFX = false;
+                hasPlayingCountDownSFX = false;
                 GameOver();
             }
         }
@@ -90,17 +91,17 @@ public class GameManager : MonoBehaviour
         if (TimeLimit < 30)
         {
             HalfTimeAlarm.SetActive(true);
-            //if (!hasPlayingSFX)
-            //{
-            //    SoundManager.Instance.ClockSFX();
-            //    hasPlayingSFX = true;
+            if (!hasPlayingClockSFX)
+            {
+                SoundManager.Instance.ClockSFX();
+                hasPlayingClockSFX = true;
 
-            //}
+            }
 
-            if (TimeLimit < 28)
+            if (TimeLimit < 25)
             {
                 HalfTimeAlarm.SetActive(false);
-                hasPlayingSFX = false;
+                hasPlayingClockSFX = false;
             }
         }
 
@@ -166,6 +167,7 @@ public class GameManager : MonoBehaviour
 
     public void AgainPressed()
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene("GameScene");
     }
 
@@ -174,5 +176,15 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene("GameStartScene");
 
     }
+
+    //public void ClockSFXPlay()
+    //{
+    //    SoundManager.Instance.ClockSFX();
+    //}
+
+    //public void CountDownSFXPlay()
+    //{
+    //    SoundManager.Instance.CountDownSFX();
+    //}
 
 }
